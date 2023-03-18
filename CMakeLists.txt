@@ -14,6 +14,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick)
 
 set(PROJECT_SOURCES
     example/main.cpp
+    example/example.qrc
+
+    include/qml.qrc
 )
 
 add_executable(Qonsole

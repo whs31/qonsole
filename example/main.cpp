@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     // c++ part
 
     QQmlApplicationEngine engine;
-    const QUrl url(QStringLiteral("qrc:/example.qml"));
+    const QUrl url(QStringLiteral("qrc:/Example.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
         &app, [url](QObject *obj, const QUrl &objUrl) {
             if (!obj && url == objUrl)
