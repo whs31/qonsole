@@ -7,7 +7,16 @@ Window { id: root;
     visible: true;
     color: "#1E1e1e";
     Component.onCompleted: showMaximized();
-    DebugConsole {
-
+    DebugConsole { id: debugConsole; }
+    Item {
+        Keys.onPressed: (event) => {
+                            if (event.key === Qt.Key_W) {
+                                console.log("Toggle console");
+                                debugConsole.visible = !debugConsole.visible;
+                                debugConsole.enabled = !debugConsole.enabled;
+                                event.accepted = true;
+                            }
+                        }
+        Component.onCompleted: forceActiveFocus();
     }
 }

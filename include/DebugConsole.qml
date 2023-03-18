@@ -40,7 +40,6 @@ Rectangle { id: control;
                     let global_pos = mapToItem(control.parent, mouseX, mouseY);
                     control.x = global_pos.x - offset.x;
                     control.y = global_pos.y - offset.y;
-                    console.log(global_pos, offset, control.x, control.y);
                 }
             }
         }
@@ -57,6 +56,10 @@ Rectangle { id: control;
                 hoverEnabled: true;
                 onEntered: parent.color = "#563A3D";
                 onExited: parent.color = "#343434";
+                onClicked: {
+                    control.enabled = false;
+                    control.visible = false;
+                }
             }
 
             Image {
