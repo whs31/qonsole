@@ -4,5 +4,6 @@
         <file>rc/header.png</file>
         <file>rc/cross.png</file>
         <file>rc/handle.png</file>
+        <file>rc/UbuntuMono.ttf</file>
     </qresource>
 </RCC>

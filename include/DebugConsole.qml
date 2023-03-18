@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 Rectangle { id: control;
     width: 1024;
@@ -10,6 +11,7 @@ Rectangle { id: control;
     y: 64;
     z: 100;
 
+    FontLoader { id: monoFont; source: "qrc:/rc/UbuntuMono.ttf"; }
     Rectangle { id: header;
         height: 20;
         anchors.left: parent.left;
@@ -67,5 +69,44 @@ Rectangle { id: control;
                 anchors.centerIn: parent;
             }
         }
+    }
+
+    ScrollView { id: scrollView;
+        anchors.left: parent.left;
+        anchors.right: parent.right;
+        anchors.top: header.bottom;
+        anchors.bottom: inputArea.top;
+        ScrollBar.vertical.policy: ScrollBar.AlwaysOn;
+
+        TextArea { id: textArea;
+            color: "#ECEFF4";
+            background: Rectangle{
+                color:"#232323";
+            }
+            text: "[GUI] Console initialized";
+            selectByMouse: true;
+            readOnly: true;
+            selectedTextColor: "#2E3440";
+            selectionColor: "#B48EAD";
+            textFormat: Text.RichText;
+            font.family: monoFont.name;
+            font.pixelSize: 13;
+            wrapMode: Text.NoWrap;
+            function append(strAdd)
+            {
+                textArea.text = textArea.text + strAdd;
+                textArea.cursorPosition = textArea.length - 1;
+            }
+        }
+    }
+
+    Rectangle { id: inputArea;
+        anchors.left: parent.left;
+        anchors.right: parent.right;
+        anchors.bottom: parent.bottom;
+        height: 28;
+        color: "#000000";
+        border.width: 0.5;
+        border.color: "#343434";
     }
 }

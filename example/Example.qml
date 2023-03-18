@@ -10,7 +10,7 @@ Window { id: root;
     DebugConsole { id: debugConsole; }
     Item {
         Keys.onPressed: (event) => {
-                            if (event.key === Qt.Key_W) {
+                            if (event.key === Qt.Key_Backslash) {
                                 console.log("Toggle console");
                                 debugConsole.visible = !debugConsole.visible;
                                 debugConsole.enabled = !debugConsole.enabled;
