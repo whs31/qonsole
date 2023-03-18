@@ -5,7 +5,7 @@ Window { id: root;
     width: 640;
     height: 480;
     visible: true;
-    color: "gray";
+    color: "#1E1e1e";
     Component.onCompleted: showMaximized();
     DebugConsole {
 
