@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QDebug>
 #include <qqml.h>
+#include <QTimer>
 
 #include "../include/debug.hpp"
 
@@ -32,7 +33,7 @@ int main(int argc, char *argv[])
     qWarning() << "1231231";
     qInfo() << "123123123123";
     qCritical() << "asdsdgjnsdfkogjdfg";
-    for(int i = 0; i < 150; i++)
+    for(int i = 0; i < 50; i++)
     {
         qDebug() << "[TEST] Test number: " << i;
     }

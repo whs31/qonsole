@@ -2,6 +2,13 @@
 
 #include <QObject>
 
+
+/// @brief
+#define QONSOLE_DECLARE QONSOLE_DECLARE_PRIVATE
+
+/// @brief
+#define QONSOLE_INIT QONSOLE_INIT_PRIVATE
+
 class DebugPrivate;
 class Debug : public QObject
 {
@@ -18,7 +25,24 @@ private:
 
 };
 
-#define QONSOLE_DECLARE QScopedPointer<Debug> console; \
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define QONSOLE_DECLARE_PRIVATE QScopedPointer<Debug> console; \
                         bool _init_ = false; \
                         void consoleHandler(QtMsgType type, const QMessageLogContext&, const QString& msg) \
                         { \
@@ -50,6 +74,6 @@ private:
                             console->append(txt); \
                         } \
 
-#define QONSOLE_INIT console.reset(new Debug()); \
+#define QONSOLE_INIT_PRIVATE console.reset(new Debug()); \
                     _init_ = true; \
                     qInstallMessageHandler(consoleHandler); \

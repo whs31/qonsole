@@ -11,6 +11,7 @@ Rectangle { id: control;
     x: 128;
     y: 64;
     z: 100;
+    clip: true;
 
     FontLoader { id: monoFont; source: "qrc:/rc/UbuntuMono.ttf"; }
     Connections
@@ -117,5 +118,42 @@ Rectangle { id: control;
         color: "#000000";
         border.width: 0.5;
         border.color: "#343434";
+
+        Rectangle { id: resizeButton;
+            anchors.right: parent.right;
+            anchors.bottom: parent.bottom;
+            width: 16;
+            height: 16;
+            color: "#000000";
+
+            MouseArea { // resize window mouse area
+                property point offset: Qt.point(0, 0);
+                anchors.fill: parent;
+                hoverEnabled: true;
+                onPressed: {
+                    parent.color = "#343434";
+                    offset = Qt.point(mouseX, mouseY);
+                }
+                onReleased: {
+                    parent.color = "#000000";
+                }
+                onPositionChanged: {
+                    if(pressed) {
+                        let global_pos = mapToItem(control, mouseX, mouseY);
+                        control.width = global_pos.x - offset.x;
+                        control.height = global_pos.y - offset.y;
+                        if(control.width <= 60)
+                            control.width = 60;
+                        if(control.height <= 50)
+                            control.height = 50;
+                    }
+                }
+            }
+
+            Image {
+                source: "qrc:/rc/handle.png";
+                anchors.centerIn: parent;
+            }
+        }
     }
 }
