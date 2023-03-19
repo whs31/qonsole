@@ -3,27 +3,16 @@
 #include <QDebug>
 #include <qqml.h>
 
+#include "../include/debug.hpp"
 
+QONSOLE_DECLARE;
 int main(int argc, char *argv[])
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#endif
-#ifdef Q_OS_WIN
-    qSetMessagePattern("[%{time process}] %{message}");
-#else
-    qSetMessagePattern("[%{time process}] "
-                       "%{if-debug}\033[01;38;05;15m%{endif}"
-                       "%{if-info}\033[01;38;05;146m%{endif}"
-                       "%{if-warning}\033[1;33m%{endif}"
-                       "%{if-critical}\033[1;31m%{endif}"
-                       "%{if-fatal}F%{endif}"
-                       "%{message}\033[0m");
-#endif
-
+    #endif
     QGuiApplication app(argc, argv);
-
-    // c++ part
+    QONSOLE_INIT;
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/Example.qml"));
@@ -38,6 +27,15 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection
         );
     engine.load(url);
+
+    qDebug() << "123";
+    qWarning() << "1231231";
+    qInfo() << "123123123123";
+    qCritical() << "asdsdgjnsdfkogjdfg";
+    for(int i = 0; i < 150; i++)
+    {
+        qDebug() << "[TEST] Test number: " << i;
+    }
 
     return app.exec();
 }

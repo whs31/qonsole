@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import DebugConsoleImpl 1.0
 
 Rectangle { id: control;
     width: 1024;
@@ -12,6 +13,14 @@ Rectangle { id: control;
     z: 100;
 
     FontLoader { id: monoFont; source: "qrc:/rc/UbuntuMono.ttf"; }
+    Connections
+    {
+        target: Impl;
+        function onAppendSignal(text)
+        {
+            textArea.append(text);
+        }
+    }
     Rectangle { id: header;
         height: 20;
         anchors.left: parent.left;

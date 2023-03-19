@@ -17,6 +17,10 @@ set(PROJECT_SOURCES
     example/example.qrc
 
     include/qml.qrc
+    include/debug.hpp
+
+    src/debug.cpp
+    src/debug_p.hpp
 )
 
 add_executable(Qonsole
