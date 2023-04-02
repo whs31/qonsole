@@ -22,7 +22,7 @@ set (EXAMPLES
 
 set(PROJECT_SOURCES
     include/qonsole.qrc
-    include/debug.hpp
+    include/Qonsole/debug.hpp
 
     src/debug.cpp
     src/debug_p.hpp

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../include/debug.hpp"
+//#include "../include/debug.hpp"
+#include <Qonsole/debug.hpp>
 
 class DebugPrivate : public QObject
 {
