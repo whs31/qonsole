@@ -1,19 +1,28 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
 import DebugConsoleImpl 1.0
 
-Rectangle { id: control;
-    width: 1024;
-    height: 891;
+Window { id: control;
+    // можно динамически менять размер области для клика, так что 0 проблем с оверлеем/меню
+    width: 1000;
+    height: 600;
+    x: 75;
+    y: 75; // относительно верхнего левого
+    visible: true;
+    flags: Qt.WA_NoSystemBackground | Qt.WA_TranslucentBackground |
+           Qt.FramelessWindowHint   | Qt.WindowStaysOnTopHint     |
+           Qt.WA_NoBackground;
+    color: "#00000000";
+Rectangle { id: controlOverlay;
+    anchors.fill: parent;
     color: "#232323";
     border.width: 0.5;
     border.color: "#343434";
-    x: 128;
-    y: 64;
     z: 100;
     clip: true;
 
-    FontLoader { id: monoFont; source: "qrc:/rc/UbuntuMono.ttf"; }
+    FontLoader { id: monoFont; source: "qrc:/qonsole/rc/UbuntuMono.ttf"; }
     Connections
     {
         target: Impl;
@@ -30,7 +39,7 @@ Rectangle { id: control;
         color: "#343434";
 
         Image { id: title;
-            source: "qrc:/rc/header.png";
+            source: "qrc:/qonsole/rc/header.png";
             anchors.left: parent.left;
             anchors.leftMargin: 5;
             anchors.verticalCenter: parent.verticalCenter;
@@ -49,7 +58,7 @@ Rectangle { id: control;
             }
             onPositionChanged: {
                 if(pressed) {
-                    let global_pos = mapToItem(control.parent, mouseX, mouseY);
+                    let global_pos = mapToGlobal(mouseX, mouseY);
                     control.x = global_pos.x - offset.x;
                     control.y = global_pos.y - offset.y;
                 }
@@ -69,13 +78,12 @@ Rectangle { id: control;
                 onEntered: parent.color = "#563A3D";
                 onExited: parent.color = "#343434";
                 onClicked: {
-                    control.enabled = false;
                     control.visible = false;
                 }
             }
 
             Image {
-                source: "qrc:/rc/cross.png";
+                source: "qrc:/qonsole/rc/cross.png";
                 anchors.centerIn: parent;
             }
         }
@@ -139,7 +147,7 @@ Rectangle { id: control;
                 }
                 onPositionChanged: {
                     if(pressed) {
-                        let global_pos = mapToItem(control, mouseX, mouseY);
+                        let global_pos = mapToGlobal(mouseX, mouseY);
                         control.width = global_pos.x - offset.x;
                         control.height = global_pos.y - offset.y;
                         if(control.width <= 60)
@@ -151,9 +159,10 @@ Rectangle { id: control;
             }
 
             Image {
-                source: "qrc:/rc/handle.png";
+                source: "qrc:/qonsole/rc/handle.png";
                 anchors.centerIn: parent;
             }
         }
     }
+}
 }

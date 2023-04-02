@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/">
+    <qresource prefix="/qonsole/">
         <file>DebugConsole.qml</file>
         <file>rc/header.png</file>
         <file>rc/cross.png</file>

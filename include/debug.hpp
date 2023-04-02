@@ -71,9 +71,8 @@ private:
                                 break; \
                             } \
                             if(_init_) \
-                            console->append(txt); \
-                        } \
+                            console->append(txt); }
 
 #define QONSOLE_INIT_PRIVATE console.reset(new Debug()); \
                     _init_ = true; \
-                    qInstallMessageHandler(consoleHandler); \
+                    qInstallMessageHandler(consoleHandler);
